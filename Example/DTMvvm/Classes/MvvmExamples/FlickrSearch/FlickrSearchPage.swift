@@ -16,10 +16,10 @@ import DTMvvm
 class FlickrSearchPage: CollectionPage<FlickrSearchPageViewModel> {
     
     let searchBar = UISearchBar(frame: CGRect(x: 0, y: 0, width: 400, height: 30))
-    let indicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    let indicatorView = UIActivityIndicatorView(style: .gray)
     
     let loadMoreView = UIView()
-    let loadMoreIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
+    let loadMoreIndicator = UIActivityIndicatorView(style: .whiteLarge)
     
     let padding: CGFloat = 5
 

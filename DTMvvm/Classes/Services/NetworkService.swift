@@ -11,9 +11,9 @@ import ObjectMapper
 import RxSwift
 
 /// Base network service, using SessionManager from Alamofire
-open class NetworkService {
+open class NetworkService: SessionDelegate {
     
-    public let sessionManager: SessionManager
+    public let sessionManager: Session
     private let sessionConfiguration: URLSessionConfiguration = .default
     
     public var timeout: TimeInterval = 30 {
@@ -27,7 +27,7 @@ open class NetworkService {
         self.baseUrl = baseUrl
         
         sessionConfiguration.timeoutIntervalForRequest = timeout
-        sessionManager = Alamofire.SessionManager(configuration: sessionConfiguration)
+        sessionManager = Session(configuration: sessionConfiguration)
     }
     
     public func callRequest(_ path: String,
@@ -44,16 +44,17 @@ open class NetworkService {
                 encoding: encoding,
                 headers: headers)
             
-            request.responseString { response in
-                if let error = response.result.error {
+            request.responseString { (response) in
+                //set status code
+                //Check result
+                switch response.result {
+                case .success(let result):
+                    //Implement the completion block with parameters
+                    single(.success(result))
+                case .failure(let error):
                     single(.error(error))
-                } else if let body = response.result.value {
-                    single(.success(body))
-                } else {
-                    single(.error(NSError.unknown))
                 }
             }
-            
             return Disposables.create { request.cancel() }
         }
     }
@@ -63,12 +64,10 @@ open class NetworkService {
         
         if let additionalHeaders = additionalHeaders {
             additionalHeaders.forEach { pair in
-                headers.updateValue(pair.value, forKey: pair.key)
+                headers[pair.name] = pair.value
             }
         }
         
         return headers
     }
 }
-
-

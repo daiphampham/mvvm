@@ -26,10 +26,10 @@ A MVVM library for iOS Swift, including interfaces for View, ViewModel and Model
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'ToanDK' => 'dkt204@gmail.com' }
   s.source           = { :git => 'https://github.com/toandk/DTMvvm.git', :tag => s.version.to_s }
-  s.swift_version    = '4.2'
+  s.swift_version    = '5.0'
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
 
   s.source_files = 'DTMvvm/Classes/**/*'
 
