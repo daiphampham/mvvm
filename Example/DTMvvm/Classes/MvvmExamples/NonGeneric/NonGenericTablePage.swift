@@ -13,7 +13,6 @@ import RxSwift
 import Action
 
 class NonGenericTablePage: BaseListPage {
-    var viewModel: NonGenericTableViewModel!
     @IBOutlet weak var addButton: UIButton!
     
     override func setupTableView(_ tableView: UITableView) {
@@ -25,13 +24,13 @@ class NonGenericTablePage: BaseListPage {
     override func bindViewAndViewModel() {
         super.bindViewAndViewModel()
         
-        guard let viewModel = viewModel else { return }
+        guard let viewModel = viewModel as? NonGenericTableViewModel else { return }
         addButton.rx.bind(to: viewModel.addAction, input: ())
     }
     
     override func destroy() {
         super.destroy()
-        viewModel.destroy()
+        viewModel?.destroy()
     }
     
     override func cellIdentifier(_ cellViewModel: Any) -> String {
@@ -39,7 +38,8 @@ class NonGenericTablePage: BaseListPage {
     }
     
     override func getItemSource() -> RxCollection? {
-        return self.viewModel!.itemsSource
+        guard let viewModel = viewModel as? NonGenericTableViewModel else { return nil }
+        return viewModel.itemsSource
     }
 }
 

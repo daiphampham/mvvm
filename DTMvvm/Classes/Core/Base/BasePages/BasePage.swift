@@ -38,9 +38,17 @@ open class BasePage: UIViewController, ITransitionView {
     }
     
     public let navigationService: INavigationService = DependencyManager.shared.getService()
-    
+    public let storageService: IStorageService = DependencyManager.shared.getService()
+    public let alertService: IAlertService = DependencyManager.shared.getService()
     deinit {
         destroy()
+    }
+    
+    public private(set) var viewModel: ViewModel<Model>?
+    
+    public convenience init(model vm: ViewModel<Model>) {
+        self.init()
+        self.viewModel = vm
     }
     
     open override func viewDidLoad() {

@@ -30,8 +30,11 @@ open class BaseListPage: BasePage, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet public weak var tableView: UITableView!
     
     override open func viewDidLoad() {
-        setupTableView(tableView)
         super.viewDidLoad()
+    }
+    
+    open override func initialize() {    
+        setupTableView(tableView)
     }
     
     open override func destroy() {

@@ -13,15 +13,13 @@ import RxSwift
 import RxCocoa
 
 class NonGenericSectionListPage: BaseListPage {
-    
+
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var sortBtn: UIButton!
     
-    var viewModel: SectionListPageViewModel!
-    
     override func destroy() {
         super.destroy()
-        viewModel.destroy()
+        viewModel?.destroy()
     }
     
     override func setupTableView(_ tableView: UITableView) {
@@ -33,15 +31,15 @@ class NonGenericSectionListPage: BaseListPage {
     override func bindViewAndViewModel() {
         super.bindViewAndViewModel()
         
-        guard let viewModel = viewModel else { return }
+        guard let viewModel = viewModel as? SectionListPageViewModel else { return }
         viewModel.react()
-        
         addBtn.rx.bind(to: viewModel.addAction, input: ())
         sortBtn.rx.bind(to: viewModel.sortAction, input: ())
     }
     
     override func getItemSource() -> RxCollection? {
-        return self.viewModel!.itemsSource
+        guard let viewModel = viewModel as? SectionListPageViewModel else { return nil }
+        return viewModel.itemsSource
     }
     
     // Based on type to return correct identifier for cells
@@ -54,7 +52,8 @@ class NonGenericSectionListPage: BaseListPage {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let vm = viewModel?.itemsSource[section].key as? SectionHeaderViewViewModel {
+        guard let viewModel = viewModel as? SectionListPageViewModel else { return nil }
+        if let vm = viewModel.itemsSource[section].key as? SectionHeaderViewViewModel {
             let headerView = SectionHeaderView(viewModel: vm)
             return headerView
         }
@@ -63,7 +62,8 @@ class NonGenericSectionListPage: BaseListPage {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if let _ = viewModel?.itemsSource[section].key as? SectionHeaderViewViewModel {
+        guard let viewModel = viewModel as? SectionListPageViewModel else { return 0.0 }
+        if let _ = viewModel.itemsSource[section].key as? SectionHeaderViewViewModel {
             return 30
         }
         

@@ -242,16 +242,14 @@ class TPExampleMenuPageViewModel: ExampleMenuPageViewModel {
 //            let vm = SimpleListPageViewModel(model: cellViewModel.model)
 //            page = SimpleListPage(viewModel: vm)
             let vm = NonGenericTableViewModel(model: cellViewModel.model)
-            let vc = NonGenericTablePage(nibName: "NonGenericTablePage", bundle: nil)
-            vc.viewModel = vm
+            let vc = NonGenericTablePage(model: vm)
             page = vc
             
         case 1:
 //            let vm = SectionListPageViewModel(model: cellViewModel.model)
 //            page = SectionListPage(viewModel: vm)
             let vm = SectionListPageViewModel(model: cellViewModel.model)
-            let vc = NonGenericSectionListPage(nibName: "NonGenericSectionListPage", bundle: nil)
-            vc.viewModel = vm
+            let vc = NonGenericSectionListPage(model: vm)
             page = vc
             
         default: ()
