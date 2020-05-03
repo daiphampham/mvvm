@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 /// Based UIView that support ViewModel
 open class View<VM: IGenericViewModel>: UIView, IView {
@@ -137,7 +138,78 @@ open class CollectionCell<VM: IGenericViewModel>: UICollectionViewCell, IView {
     
     open func initialize() {}
     open func bindViewAndViewModel() {}
+    
+    
 }
+
+/// Master based cell for CollectionPage
+open class BaseCollectionCell: UICollectionViewCell, IView {
+    
+    open class var identifier: String {
+        return String(describing: self)
+    }
+    
+    public var disposeBag: DisposeBag? = DisposeBag()
+    
+    private var _viewModel: BaseCellViewModel?
+    public var viewModel: BaseCellViewModel? {
+        get { return _viewModel }
+        set {
+            if newValue != _viewModel {
+                disposeBag = DisposeBag()
+                
+                _viewModel = newValue
+                viewModelChanged()
+            }
+        }
+    }
+    
+    public var anyViewModel: Any? {
+        get { return _viewModel }
+        set { viewModel = newValue as? BaseCellViewModel }
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    deinit { destroy() }
+    
+    private func setup() {
+        backgroundColor = .clear
+        initialize()
+    }
+    
+    private func viewModelChanged() {
+        bindViewAndViewModel()
+        (_viewModel)?.reactIfNeeded()
+    }
+    
+    open override func prepareForReuse() {
+        super.prepareForReuse()
+        _viewModel = nil
+    }
+    
+    open func destroy() {
+        disposeBag = DisposeBag()
+        viewModel?.destroy()
+    }
+    
+    open func initialize() {}
+    open func bindViewAndViewModel() {}
+    
+    open class func getSize(withItem data: Any?) -> CGSize? {
+        return nil
+    }
+
+}
+
 
 /// Master cell for ListPage
 open class TableCell<VM: IGenericViewModel>: UITableViewCell, IView {
@@ -207,13 +279,4 @@ open class TableCell<VM: IGenericViewModel>: UITableViewCell, IView {
     open func initialize() {}
     open func bindViewAndViewModel() {}
 }
-
-
-
-
-
-
-
-
-
 

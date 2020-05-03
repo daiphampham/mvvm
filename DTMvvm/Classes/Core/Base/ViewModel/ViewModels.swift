@@ -25,9 +25,6 @@ extension Reactive where Base: IGenericViewModel {
     }
 }
 
-open class BaseViewModel: NSObject {
-    
-}
 
 /// A master based ViewModel for all
 open class ViewModel<M>: NSObject, IViewModel, IReactable {
@@ -124,6 +121,7 @@ open class ListViewModel<M, CVM: IGenericViewModel>: ViewModel<M>, IListViewMode
 
 protocol IIndexable: class {
     var indexPath: IndexPath? { get set }
+    var isLastRow: Bool { get set }
 }
 
 open class CellViewModel<M>: NSObject, IGenericViewModel, IIndexable, IReactable {
@@ -142,7 +140,7 @@ open class CellViewModel<M>: NSObject, IGenericViewModel, IIndexable, IReactable
     /// Each cell will keep its own index path
     /// In some cases, each cell needs to use this index to create some customizations
     public internal(set) var indexPath: IndexPath?
-    
+    public internal(set) var  isLastRow: Bool = false
     /// Bag for databindings
     public var disposeBag: DisposeBag? = DisposeBag()
     
@@ -174,17 +172,3 @@ open class SuperCellViewModel: CellViewModel<Any> {
         super.init(model: model)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

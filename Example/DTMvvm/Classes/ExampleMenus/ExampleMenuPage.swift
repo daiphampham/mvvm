@@ -229,7 +229,7 @@ class TPExampleMenuPageViewModel: ExampleMenuPageViewModel {
     override func getMenuModels() -> [MenuModel] {
         return [
             MenuModel(withTitle: "Simple ListPage", desc: "A simple ListPage which has one cell identifier."),
-            MenuModel(withTitle: "ListPage with section", desc: "A simple ListPage with section header and multiple cell identifiers."),
+            MenuModel(withTitle: "ListPage with section", desc: "A simple ListPage with section header and multiple cell identifiers.")
         ]
     }
     
@@ -251,7 +251,6 @@ class TPExampleMenuPageViewModel: ExampleMenuPageViewModel {
             let vm = SectionListPageViewModel(model: cellViewModel.model)
             let vc = NonGenericSectionListPage(model: vm)
             page = vc
-            
         default: ()
         }
         
@@ -266,6 +265,7 @@ class CPExampleMenuPageViewModel: ExampleMenuPageViewModel {
         return [
             MenuModel(withTitle: "Simple CollectionPage", desc: "A simple CollectionPage which has one cell identifier."),
             MenuModel(withTitle: "CollectionPage with section", desc: "A simple CollectionPage with section header and multiple cell identifiers."),
+            MenuModel(withTitle: "Simple NonGeneric CollectionPage", desc: "A simple Non Generic CollectionPage which has one cell identifier."),
         ]
     }
     
@@ -277,11 +277,13 @@ class CPExampleMenuPageViewModel: ExampleMenuPageViewModel {
         case 0:
             let vm = SimpleListPageViewModel(model: cellViewModel.model)
             page = SimpleCollectionPage(viewModel: vm)
-            
         case 1:
             let vm = SectionListPageViewModel(model: cellViewModel.model)
             page = SectionCollectionPage(viewModel: vm)
-            
+        case 2:
+            let vmx = XSimpleListPageViewModel(model: cellViewModel.model)
+            page = NonGenericCollectionPage(model: vmx)
+            break
         default: ()
         }
         
