@@ -68,8 +68,12 @@ open class BaseListPage: BasePage, UITableViewDataSource, UITableViewDelegate {
     
     private func onItemSelected(_ indexPath: IndexPath) {
         guard let itemsSource = getItemSource() else { return }
-        if let cellViewModel = itemsSource.element(atIndexPath: indexPath) {
+        if let cellViewModel = itemsSource.element(atIndexPath: indexPath) as? BaseCellViewModel {
             selectedItemDidChange(cellViewModel)
+            guard let viewModel = self.viewModel as? BaseListViewModel else { return }
+            viewModel.rxSelectedItem.accept(cellViewModel)
+            viewModel.rxSelectedIndex.accept(indexPath)
+            viewModel.selectedItemDidChange(cellViewModel)
         }
     }
     

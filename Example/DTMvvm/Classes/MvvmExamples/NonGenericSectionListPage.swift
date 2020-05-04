@@ -31,14 +31,14 @@ class NonGenericSectionListPage: BaseListPage {
     override func bindViewAndViewModel() {
         super.bindViewAndViewModel()
         
-        guard let viewModel = viewModel as? SectionListPageViewModel else { return }
+        guard let viewModel = viewModel as? NonGenericSectionListPageViewModel else { return }
         viewModel.react()
         addBtn.rx.bind(to: viewModel.addAction, input: ())
         sortBtn.rx.bind(to: viewModel.sortAction, input: ())
     }
     
     override func getItemSource() -> RxCollection? {
-        guard let viewModel = viewModel as? SectionListPageViewModel else { return nil }
+        guard let viewModel = viewModel as? NonGenericSectionListPageViewModel else { return nil }
         return viewModel.itemsSource
     }
     
@@ -52,7 +52,7 @@ class NonGenericSectionListPage: BaseListPage {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let viewModel = viewModel as? SectionListPageViewModel else { return nil }
+        guard let viewModel = viewModel as? NonGenericSectionListPageViewModel else { return nil }
         if let vm = viewModel.itemsSource[section].key as? SectionHeaderViewViewModel {
             let headerView = SectionHeaderView(viewModel: vm)
             return headerView
@@ -62,7 +62,7 @@ class NonGenericSectionListPage: BaseListPage {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        guard let viewModel = viewModel as? SectionListPageViewModel else { return 0.0 }
+        guard let viewModel = viewModel as? NonGenericSectionListPageViewModel else { return 0.0 }
         if let _ = viewModel.itemsSource[section].key as? SectionHeaderViewViewModel {
             return 30
         }

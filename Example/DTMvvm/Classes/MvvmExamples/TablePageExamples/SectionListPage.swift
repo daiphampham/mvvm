@@ -135,11 +135,3 @@ class SectionListPageViewModel: ListViewModel<Model, SuperCellViewModel> {
         }, at: section)
     }
 }
-
-
-
-
-
-
-
-

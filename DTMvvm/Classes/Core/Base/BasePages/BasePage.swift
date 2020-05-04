@@ -44,9 +44,9 @@ open class BasePage: UIViewController, ITransitionView {
         destroy()
     }
     
-    public private(set) var viewModel: ViewModel<Model>?
+    public private(set) var viewModel: BaseViewModel?
     
-    public convenience init(model vm: ViewModel<Model>) {
+    public convenience init(model vm: BaseViewModel) {
         self.init()
         self.viewModel = vm
     }
@@ -127,7 +127,9 @@ open class BasePage: UIViewController, ITransitionView {
     /**
      Subclasses override this method to do more action when `viewModel` changed.
      */
-    open func viewModelChanged() { }
+    open func viewModelChanged() {
+        viewModel?.reactIfNeeded()
+    }
     
     private func cleanUp() {
         disposeBag = nil

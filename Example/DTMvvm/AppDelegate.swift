@@ -9,6 +9,8 @@
 import UIKit
 import DTMvvm
 
+let EXAMPLE_NON_GENERIC_TYPE = false
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -19,8 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         DependencyManager.shared.registerDefaults()
         
         window = UIWindow(frame: UIScreen.main.bounds)
+        var page:UIViewController = ExampleMenuPage(viewModel: HomeMenuPageViewModel())
+        if EXAMPLE_NON_GENERIC_TYPE {
+            page = NonGenericExampleMenusPage(model: NonGenericHomeMenuPageViewModel())
+        }
         
-        let page = ExampleMenuPage(viewModel: HomeMenuPageViewModel())
         let rootPage = NavigationPage(rootViewController: page)
         rootPage.statusBarStyle = .default
         window?.rootViewController = rootPage

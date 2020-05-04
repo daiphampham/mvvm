@@ -53,4 +53,8 @@ class NonGenericCollectionPage: BaseCollectionPage {
         return NonGenericCPTextCell.identifier
     }
     
+    override func selectedItemDidChange(_ cellViewModel: Any) {
+        
+    }
+    
 }

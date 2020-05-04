@@ -248,8 +248,9 @@ class TPExampleMenuPageViewModel: ExampleMenuPageViewModel {
         case 1:
 //            let vm = SectionListPageViewModel(model: cellViewModel.model)
 //            page = SectionListPage(viewModel: vm)
-            let vm = SectionListPageViewModel(model: cellViewModel.model)
+            let vm = NonGenericSectionListPageViewModel(model: cellViewModel.model)
             let vc = NonGenericSectionListPage(model: vm)
+            
             page = vc
         default: ()
         }
@@ -281,7 +282,7 @@ class CPExampleMenuPageViewModel: ExampleMenuPageViewModel {
             let vm = SectionListPageViewModel(model: cellViewModel.model)
             page = SectionCollectionPage(viewModel: vm)
         case 2:
-            let vmx = XSimpleListPageViewModel(model: cellViewModel.model)
+            let vmx = NonGenericSectionListPageViewModel(model: cellViewModel.model)
             page = NonGenericCollectionPage(model: vmx)
             break
         default: ()

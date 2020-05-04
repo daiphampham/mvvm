@@ -1,24 +1,21 @@
 //
-//  Views.swift
-//  DTMvvm
+//  BaseView.swift
+//  Action
 //
-//  Created by Dao Duy Duong on 10/7/15.
-//  Copyright © 2015 Nover. All rights reserved.
+//  Created by pham.minh.tien on 5/3/20.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-/// Based UIView that support ViewModel
-open class View<VM: IGenericViewModel>: UIView, IView {
-    
-    public typealias ViewModelElement = VM
+//MARK: - Based UIView that support BasePage
+open class BaseView: UIView, IView {
     
     public var disposeBag: DisposeBag? = DisposeBag()
     
-    private var _viewModel: VM?
-    public var viewModel: VM? {
+    private var _viewModel: BaseViewModel?
+    public var viewModel: BaseViewModel? {
         get { return _viewModel }
         set {
             if newValue != _viewModel {
@@ -32,16 +29,16 @@ open class View<VM: IGenericViewModel>: UIView, IView {
     
     public var anyViewModel: Any? {
         get { return _viewModel }
-        set { viewModel = newValue as? VM }
+        set { viewModel = newValue as? BaseViewModel }
     }
     
-    public init(viewModel: VM? = nil) {
+    public init(viewModel: BaseViewModel? = nil) {
         self._viewModel = viewModel
         super.init(frame: .zero)
         setup()
     }
     
-    public init(frame: CGRect, viewModel: VM? = nil) {
+    public init(frame: CGRect, viewModel: BaseViewModel? = nil) {
         self._viewModel = viewModel
         super.init(frame: frame)
         setup()
@@ -63,7 +60,7 @@ open class View<VM: IGenericViewModel>: UIView, IView {
     
     private func viewModelChanged() {
         bindViewAndViewModel()
-        (_viewModel as? IReactable)?.reactIfNeeded()
+        _viewModel?.reactIfNeeded()
     }
     
     open func destroy() {
@@ -75,19 +72,22 @@ open class View<VM: IGenericViewModel>: UIView, IView {
     open func bindViewAndViewModel() {}
 }
 
-/// Master based cell for CollectionPage
-open class CollectionCell<VM: IGenericViewModel>: UICollectionViewCell, IView {
+
+//MARK: Based collection view cell for BaseCollectionPage
+open class BaseCollectionCell: UICollectionViewCell, IView {
     
     open class var identifier: String {
         return String(describing: self)
     }
     
-    public typealias ViewModelElement = VM
+    open class var nib: UINib {
+        return UINib(nibName:String(describing: self), bundle: Bundle.main)
+    }
     
     public var disposeBag: DisposeBag? = DisposeBag()
     
-    private var _viewModel: VM?
-    public var viewModel: VM? {
+    private var _viewModel: BaseCellViewModel?
+    public var viewModel: BaseCellViewModel? {
         get { return _viewModel }
         set {
             if newValue != _viewModel {
@@ -101,7 +101,7 @@ open class CollectionCell<VM: IGenericViewModel>: UICollectionViewCell, IView {
     
     public var anyViewModel: Any? {
         get { return _viewModel }
-        set { viewModel = newValue as? VM }
+        set { viewModel = newValue as? BaseCellViewModel }
     }
     
     public override init(frame: CGRect) {
@@ -123,7 +123,7 @@ open class CollectionCell<VM: IGenericViewModel>: UICollectionViewCell, IView {
     
     private func viewModelChanged() {
         bindViewAndViewModel()
-        (_viewModel as? IReactable)?.reactIfNeeded()
+        _viewModel?.reactIfNeeded()
     }
     
     open override func prepareForReuse() {
@@ -139,23 +139,26 @@ open class CollectionCell<VM: IGenericViewModel>: UICollectionViewCell, IView {
     open func initialize() {}
     open func bindViewAndViewModel() {}
     
-    
+    open class func getSize(withItem data: Any?) -> CGSize? {
+        return nil
+    }
 }
 
-
-/// Master cell for ListPage
-open class TableCell<VM: IGenericViewModel>: UITableViewCell, IView {
+//MARK: Base table view cell for BaseListPage
+open class BaseTableCell: UITableViewCell, IView {
     
     open class var identifier: String {
         return String(describing: self)
     }
     
-    public typealias ViewModelElement = VM
+    open class var nib: UINib {
+        return UINib(nibName:String(describing: self), bundle: Bundle.main)
+    }
     
     public var disposeBag: DisposeBag? = DisposeBag()
     
-    private var _viewModel: VM?
-    public var viewModel: VM? {
+    private var _viewModel: BaseCellViewModel?
+    public var viewModel: BaseCellViewModel? {
         get { return _viewModel }
         set {
             if newValue != _viewModel {
@@ -169,7 +172,7 @@ open class TableCell<VM: IGenericViewModel>: UITableViewCell, IView {
     
     public var anyViewModel: Any? {
         get { return _viewModel }
-        set { viewModel = newValue as? VM }
+        set { viewModel = newValue as? BaseCellViewModel }
     }
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -195,7 +198,7 @@ open class TableCell<VM: IGenericViewModel>: UITableViewCell, IView {
     
     private func viewModelChanged() {
         bindViewAndViewModel()
-        (_viewModel as? IReactable)?.reactIfNeeded()
+        _viewModel?.reactIfNeeded()
     }
     
     open override func prepareForReuse() {

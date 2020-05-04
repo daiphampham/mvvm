@@ -18,7 +18,7 @@ class NonGenericTablePage: BaseListPage {
     override func setupTableView(_ tableView: UITableView) {
         super.setupTableView(tableView)
         tableView.estimatedRowHeight = 100
-        tableView.register(SimpleListPageCell.self, forCellReuseIdentifier: SimpleListPageCell.identifier)
+        tableView.register(NonGenericSimpleListPageCell.self, forCellReuseIdentifier: NonGenericSimpleListPageCell.identifier)
     }
     
     override func bindViewAndViewModel() {
@@ -34,7 +34,7 @@ class NonGenericTablePage: BaseListPage {
     }
     
     override func cellIdentifier(_ cellViewModel: Any) -> String {
-        return SimpleListPageCell.identifier
+        return NonGenericSimpleListPageCell.identifier
     }
     
     override func getItemSource() -> RxCollection? {
@@ -43,7 +43,7 @@ class NonGenericTablePage: BaseListPage {
     }
 }
 
-class NonGenericTableViewModel: ListViewModel<Model, SimpleListPageCellViewModel> {
+class NonGenericTableViewModel: BaseListViewModel {
     
     lazy var addAction: Action<Void, Void> = {
         return Action() { .just(self.add()) }
@@ -52,7 +52,8 @@ class NonGenericTableViewModel: ListViewModel<Model, SimpleListPageCellViewModel
     private func add() {
         let number = Int.random(in: 1000...10000)
         let title = "This is your random number: \(number)"
-        let cvm = SimpleListPageCellViewModel(model: SimpleModel(withTitle: title))
+//        let cvm = SimpleListPageCellViewModel(model: SimpleModel(withTitle: title))
+        let cvm = NonGenericSimpleListPageCellViewModel(model: SimpleModel(withTitle: title))
         itemsSource.append(cvm)
     }
 }

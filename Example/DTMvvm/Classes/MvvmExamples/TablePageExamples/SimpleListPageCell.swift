@@ -36,6 +36,35 @@ class SimpleListPageCellViewModel: CellViewModel<SimpleModel> {
 }
 
 
+class NonGenericSimpleListPageCell: BaseTableCell {
+
+    let titleLbl = UILabel()
+    
+    override func initialize() {
+        contentView.addSubview(titleLbl)
+        titleLbl.autoPinEdgesToSuperviewEdges(with: .symmetric(horizontal: 15, vertical: 10))
+    }
+    
+    override func bindViewAndViewModel() {
+        guard let viewModel = viewModel as? NonGenericSimpleListPageCellViewModel else { return }
+        viewModel.rxTitle ~> titleLbl.rx.text => disposeBag
+    }
+}
+
+
+class NonGenericSimpleListPageCellViewModel: BaseCellViewModel {
+    
+    let rxTitle = BehaviorRelay<String?>(value: nil)
+    
+    override func react() {
+        guard let viewModel = model as? SimpleModel else {
+            return
+        }
+        rxTitle.accept(viewModel.title)
+    }
+}
+
+
 
 
 

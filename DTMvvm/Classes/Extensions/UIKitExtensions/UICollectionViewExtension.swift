@@ -11,7 +11,7 @@ import RxSwift
 extension UICollectionView {
     
     open func register<T>(collectionViewCell: T.Type) where T: BaseCollectionCell {
-        register(T.self, forCellWithReuseIdentifier: T.identifier)
+        register(T.nib, forCellWithReuseIdentifier: T.identifier)
     }
     
 //    func register<T>(headerType: T.Type) where T: BaseHeaderCollectionView {
@@ -20,5 +20,19 @@ extension UICollectionView {
 //    
 //    func register<T>(footerType: T.Type) where T: BaseHeaderCollectionView {
 //        register(T.nib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: T.nibName())
+//    }
+}
+
+extension UITableView {
+    open func register<T>(cellType: T.Type) where T: BaseTableCell {
+        register(T.nib, forCellReuseIdentifier: T.identifier)
+    }
+    
+//    func register<T>(headerType: T.Type) where T: BaseHeaderTableView {
+//        register(T.nib(), forHeaderFooterViewReuseIdentifier: T.nibName(returnClassName: false))
+//    }
+//
+//    func register<T>(footerType: T.Type) where T: BaseHeaderTableView {
+//        register(T.nib(), forHeaderFooterViewReuseIdentifier: T.nibName(returnClassName: false))
 //    }
 }

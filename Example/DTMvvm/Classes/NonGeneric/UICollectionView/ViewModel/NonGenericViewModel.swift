@@ -12,7 +12,8 @@ import DTMvvm
 import Action
 import RxSwift
 
-class NonGenericSectionListPageViewModel: ListViewModel<Model, SuperCellViewModel> {
+
+class NonGenericSectionListPageViewModel: BaseListViewModel {
     
     let imageUrls = [
         "https://images.pexels.com/photos/371633/pexels-photo-371633.jpeg?auto=compress&cs=tinysrgb&h=350",
@@ -58,9 +59,9 @@ class NonGenericSectionListPageViewModel: ListViewModel<Model, SuperCellViewMode
                 let url = imageUrls[index]
                 let model = SectionImageModel(withUrl: url)
                 
-                itemsSource.append(SectionImageCellViewModel(model: model), to: sectionIndex)
+                itemsSource.append(NonGenericSectionImageCellViewModel(model: model), to: sectionIndex)
             } else {
-                itemsSource.append(SectionTextCellViewModel(model: SectionTextModel(withTitle: "Just a text cell title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")), to: sectionIndex)
+                itemsSource.append(NonGenericSectionImageCellViewModel(model: SectionTextModel(withTitle: "Just a text cell title", desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.")), to: sectionIndex)
             }
         }
     }
@@ -68,7 +69,7 @@ class NonGenericSectionListPageViewModel: ListViewModel<Model, SuperCellViewMode
     // add section
     private func add() {
         let vm = SectionHeaderViewViewModel(model: SimpleModel(withTitle: "Section title #\(itemsSource.count + 1)"))
-        itemsSource.appendSection(SectionList<SuperCellViewModel>(vm))
+        itemsSource.appendSection(SectionList<BaseCellViewModel>(vm))
     }
     
     private func sort() {
@@ -84,7 +85,6 @@ class NonGenericSectionListPageViewModel: ListViewModel<Model, SuperCellViewMode
     }
 }
 
-
 class NonGenericTextCellViewModel: BaseCellViewModel {
     let rxTitle = BehaviorRelay<String?>(value: nil)
     let rxDesc = BehaviorRelay<String?>(value: nil)
@@ -98,3 +98,18 @@ class NonGenericTextCellViewModel: BaseCellViewModel {
     }
 
 }
+
+
+
+class NonGenericSectionImageCellViewModel: BaseCellViewModel {
+    
+    let rxImage = BehaviorRelay(value: NetworkImage())
+    
+    override func react() {
+        guard let model = model as? SectionImageModel else { return }
+        
+        rxImage.accept(NetworkImage(withURL: model.imageUrl, placeholder: .from(color: .lightGray)))
+    }
+}
+
+
