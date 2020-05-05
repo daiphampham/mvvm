@@ -239,19 +239,18 @@ class TPExampleMenuPageViewModel: ExampleMenuPageViewModel {
         var page: UIViewController?
         switch indexPath.row {
         case 0:
-//            let vm = SimpleListPageViewModel(model: cellViewModel.model)
-//            page = SimpleListPage(viewModel: vm)
-            let vm = NonGenericTableViewModel(model: cellViewModel.model)
-            let vc = NonGenericTablePage(model: vm)
-            page = vc
+            let vm = SimpleListPageViewModel(model: cellViewModel.model)
+            page = SimpleListPage(viewModel: vm)
+//            let vm = NonGenericTableViewModel(model: cellViewModel.model)
+//            let vc = NonGenericTablePage(model: vm)
+//            page = vc
             
         case 1:
-//            let vm = SectionListPageViewModel(model: cellViewModel.model)
-//            page = SectionListPage(viewModel: vm)
-            let vm = NonGenericSectionListPageViewModel(model: cellViewModel.model)
-            let vc = NonGenericSectionListPage(model: vm)
-            
-            page = vc
+            let vm = SectionListPageViewModel(model: cellViewModel.model)
+            page = SectionListPage(viewModel: vm)
+//            let vm = NonGenericSectionListPageViewModel(model: cellViewModel.model)
+//            let vc = NonGenericSectionListPage(model: vm)
+//            page = vc
         default: ()
         }
         

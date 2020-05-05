@@ -48,12 +48,14 @@
 		706AD0DD2317AD1D00610983 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706AD0B72317AD1D00610983 /* AppDelegate.swift */; };
 		9C5E66A6245E74B800E8CD2F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5E66A5245E74B800E8CD2F /* CollectionViewCell.swift */; };
 		9C5E66A9245E74FA00E8CD2F /* NonGenericViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5E66A8245E74FA00E8CD2F /* NonGenericViewModel.swift */; };
-		9C5E66B4245ECE8600E8CD2F /* NonGenericExampleMenusPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5E66B2245ECE8600E8CD2F /* NonGenericExampleMenusPage.swift */; };
-		9C5E66B5245ECE8600E8CD2F /* NonGenericExampleMenusPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C5E66B3245ECE8600E8CD2F /* NonGenericExampleMenusPage.xib */; };
 		9C5E66BF245F11E100E8CD2F /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5E66BD245F11E100E8CD2F /* MenuTableViewCell.swift */; };
 		9C5E66C0245F11E100E8CD2F /* MenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C5E66BE245F11E100E8CD2F /* MenuTableViewCell.xib */; };
 		9CB55795245B12F2007AAE92 /* NonGenericCollectionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB55793245B12F2007AAE92 /* NonGenericCollectionPage.swift */; };
 		9CB55796245B12F2007AAE92 /* NonGenericCollectionPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CB55794245B12F2007AAE92 /* NonGenericCollectionPage.xib */; };
+		9CF982812461A26E000F1082 /* TableOfContentsPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF9827F2461A26D000F1082 /* TableOfContentsPage.xib */; };
+		9CF982822461A26E000F1082 /* TableOfContentsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF982802461A26E000F1082 /* TableOfContentsPage.swift */; };
+		9CF9828A2461AC10000F1082 /* IntroductionPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF982882461AC0F000F1082 /* IntroductionPage.swift */; };
+		9CF9828B2461AC10000F1082 /* IntroductionPage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF982892461AC0F000F1082 /* IntroductionPage.xib */; };
 		E5B14479246ABDECDE729C47 /* Pods_DTMvvm_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83717D9199C04ADEE86E76EB /* Pods_DTMvvm_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,12 +121,14 @@
 		83717D9199C04ADEE86E76EB /* Pods_DTMvvm_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DTMvvm_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C5E66A5245E74B800E8CD2F /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		9C5E66A8245E74FA00E8CD2F /* NonGenericViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonGenericViewModel.swift; sourceTree = "<group>"; };
-		9C5E66B2245ECE8600E8CD2F /* NonGenericExampleMenusPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonGenericExampleMenusPage.swift; sourceTree = "<group>"; };
-		9C5E66B3245ECE8600E8CD2F /* NonGenericExampleMenusPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NonGenericExampleMenusPage.xib; sourceTree = "<group>"; };
 		9C5E66BD245F11E100E8CD2F /* MenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
 		9C5E66BE245F11E100E8CD2F /* MenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuTableViewCell.xib; sourceTree = "<group>"; };
 		9CB55793245B12F2007AAE92 /* NonGenericCollectionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonGenericCollectionPage.swift; sourceTree = "<group>"; };
 		9CB55794245B12F2007AAE92 /* NonGenericCollectionPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NonGenericCollectionPage.xib; sourceTree = "<group>"; };
+		9CF9827F2461A26D000F1082 /* TableOfContentsPage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableOfContentsPage.xib; sourceTree = "<group>"; };
+		9CF982802461A26E000F1082 /* TableOfContentsPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableOfContentsPage.swift; sourceTree = "<group>"; };
+		9CF982882461AC0F000F1082 /* IntroductionPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroductionPage.swift; sourceTree = "<group>"; };
+		9CF982892461AC0F000F1082 /* IntroductionPage.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IntroductionPage.xib; sourceTree = "<group>"; };
 		DE3853135D3C2B785F6422D3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FBAB6B204F0970681DCF9099 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -381,12 +385,22 @@
 		9C5E66AF245ECDD700E8CD2F /* ExampleMenusNonGenericType */ = {
 			isa = PBXGroup;
 			children = (
-				9C5E66B2245ECE8600E8CD2F /* NonGenericExampleMenusPage.swift */,
-				9C5E66B3245ECE8600E8CD2F /* NonGenericExampleMenusPage.xib */,
+				9CF982832461ABC5000F1082 /* Introduction */,
+				9CF982802461A26E000F1082 /* TableOfContentsPage.swift */,
+				9CF9827F2461A26D000F1082 /* TableOfContentsPage.xib */,
 				9C5E66BD245F11E100E8CD2F /* MenuTableViewCell.swift */,
 				9C5E66BE245F11E100E8CD2F /* MenuTableViewCell.xib */,
 			);
 			path = ExampleMenusNonGenericType;
+			sourceTree = "<group>";
+		};
+		9CF982832461ABC5000F1082 /* Introduction */ = {
+			isa = PBXGroup;
+			children = (
+				9CF982882461AC0F000F1082 /* IntroductionPage.swift */,
+				9CF982892461AC0F000F1082 /* IntroductionPage.xib */,
+			);
+			path = Introduction;
 			sourceTree = "<group>";
 		};
 		B7830FDE80F21ED50241C79F /* Frameworks */ = {
@@ -451,9 +465,9 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = EHMNT4NFNL;
+						DevelopmentTeam = 747LG25T2M;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -489,10 +503,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C5E66B5245ECE8600E8CD2F /* NonGenericExampleMenusPage.xib in Resources */,
 				9C5E66C0245F11E100E8CD2F /* MenuTableViewCell.xib in Resources */,
+				9CF982812461A26E000F1082 /* TableOfContentsPage.xib in Resources */,
 				9CB55796245B12F2007AAE92 /* NonGenericCollectionPage.xib in Resources */,
 				706AD0CC2317AD1D00610983 /* NonGenericSectionListPage.xib in Resources */,
+				9CF9828B2461AC10000F1082 /* IntroductionPage.xib in Resources */,
 				706AD0DC2317AD1D00610983 /* Images.xcassets in Resources */,
 				706AD0DB2317AD1D00610983 /* LaunchScreen.xib in Resources */,
 				706AD0CB2317AD1D00610983 /* NonGenericTablePage.xib in Resources */,
@@ -588,7 +603,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C5E66B4245ECE8600E8CD2F /* NonGenericExampleMenusPage.swift in Sources */,
 				706AD0DD2317AD1D00610983 /* AppDelegate.swift in Sources */,
 				706AD0BE2317AD1D00610983 /* ContactCell.swift in Sources */,
 				9C5E66A6245E74B800E8CD2F /* CollectionViewCell.swift in Sources */,
@@ -599,6 +613,7 @@
 				706AD0C72317AD1D00610983 /* SectionListPageCells.swift in Sources */,
 				706AD0D22317AD1D00610983 /* NavigationTransitionExamplePage.swift in Sources */,
 				706AD0C12317AD1D00610983 /* SectionHeaderCell.swift in Sources */,
+				9CF982822461A26E000F1082 /* TableOfContentsPage.swift in Sources */,
 				706AD0CE2317AD1D00610983 /* NonGenericTablePage.swift in Sources */,
 				706AD0CD2317AD1D00610983 /* NonGenericSectionListPage.swift in Sources */,
 				706AD0C52317AD1D00610983 /* SimpleCollectionPageCell.swift in Sources */,
@@ -606,6 +621,7 @@
 				706AD0CA2317AD1D00610983 /* SectionListPage.swift in Sources */,
 				706AD0D72317AD1D00610983 /* MenuModel.swift in Sources */,
 				706AD0C92317AD1D00610983 /* SimpleListPageCell.swift in Sources */,
+				9CF9828A2461AC10000F1082 /* IntroductionPage.swift in Sources */,
 				9CB55795245B12F2007AAE92 /* NonGenericCollectionPage.swift in Sources */,
 				706AD0D42317AD1D00610983 /* ListPageModels.swift in Sources */,
 				706AD0C22317AD1D00610983 /* SectionCollectionPage.swift in Sources */,
@@ -763,16 +779,16 @@
 			baseConfigurationReference = 56D07F84FA515C0DB995C9B4 /* Pods-DTMvvm_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = EHMNT4NFNL;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 747LG25T2M;
 				INFOPLIST_FILE = DTMvvm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tdk.dtmvvm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mtlab.mvvm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Nover Development Provisioning";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 			};
@@ -783,13 +799,14 @@
 			baseConfigurationReference = 578B0E293CB810D9AE7CFF60 /* Pods-DTMvvm_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 747LG25T2M;
 				INFOPLIST_FILE = DTMvvm/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.tdk.dtmvvm;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mtlab.mvvm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;

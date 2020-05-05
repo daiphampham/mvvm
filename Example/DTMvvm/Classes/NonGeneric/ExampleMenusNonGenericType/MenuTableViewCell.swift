@@ -41,10 +41,17 @@ class MenuTableCellViewModel: BaseCellViewModel {
     let rxDesc = BehaviorRelay<String?>(value: nil)
     
     override func react() {
-        guard let viewModel = model as? MenuModel else {
-            return
+        var title = ""
+        var desc = ""
+        if let introModel = model as? IntroductionModel {
+            title = introModel.title
+            desc = introModel.desc
+        } else if let menuModel = model as? MenuModel  {
+            title = menuModel.title
+            desc = menuModel.desc
         }
-        rxTitle.accept(viewModel.title)
-        rxDesc.accept(viewModel.desc)
+        
+        rxTitle.accept(title)
+        rxDesc.accept(desc)
     }
 }

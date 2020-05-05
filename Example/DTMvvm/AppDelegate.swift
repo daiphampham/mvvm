@@ -9,7 +9,10 @@
 import UIKit
 import DTMvvm
 
-let EXAMPLE_NON_GENERIC_TYPE = false
+///Generic: com.mtlab.test
+///Non generic: com.mtlab.mvvm
+let EXAMPLE_NON_GENERIC_TYPE = true
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         var page:UIViewController = ExampleMenuPage(viewModel: HomeMenuPageViewModel())
         if EXAMPLE_NON_GENERIC_TYPE {
-            page = NonGenericExampleMenusPage(model: NonGenericHomeMenuPageViewModel())
+            page = TableOfContentsPage(model: TableOfContentViewModel())
         }
         
         let rootPage = NavigationPage(rootViewController: page)
