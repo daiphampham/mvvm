@@ -9,6 +9,7 @@
 import UIKit
 import DTMvvm
 import RxCocoa
+import RxSwift
 
 
 class MenuTableViewCell: BaseTableCell {

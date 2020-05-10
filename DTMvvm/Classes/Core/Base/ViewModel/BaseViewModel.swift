@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import WebKit
 
 //MARK: Nongeneric Type
 // Base view model sẽ đi với View tương ứng.
@@ -139,3 +140,22 @@ open class BaseCellViewModel: NSObject, IGenericViewModel, IIndexable, IReactabl
     }
 }
 
+
+open class BaseWebViewModel: BaseViewModel {
+    
+    public let rxCanGoBack = BehaviorRelay<Bool>(value:false)
+    public let rxCanGoForward = BehaviorRelay<Bool>(value:false)
+    public let rxIsLoading = BehaviorRelay<Bool>(value:false)
+    
+    open func webView(_ webView: WKWebView, estimatedProgress:Double) {}
+          
+    open func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {}
+          
+    open func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {}
+          
+    open func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {}
+    
+    open func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {}
+          
+    open func webView(_ webView: WKWebView, evaluateJavaScript:(event: Any?, error: Error?)?) {}
+}
