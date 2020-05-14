@@ -22,14 +22,23 @@ public extension Reactive where Base: WKWebView {
         }
     }
     
-    public var title: Observable<String?> {
+    var sourceHtml: Binder<String?> {
+        return Binder(base) { view, source in
+            if let source = source {
+                view.stopLoading()
+                view.loadHTMLString(source, baseURL: nil)
+            }
+        }
+    }
+    
+    var title: Observable<String?> {
         return self.observeWeakly(String.self, "title")
     }
 
     /**
      Reactive wrapper for `loading` property.
      */
-    public var loading: Observable<Bool> {
+    var loading: Observable<Bool> {
         return self.observeWeakly(Bool.self, "loading")
             .map { $0 ?? false }
     }
@@ -37,7 +46,7 @@ public extension Reactive where Base: WKWebView {
     /**
      Reactive wrapper for `estimatedProgress` property.
      */
-    public var estimatedProgress: Observable<Double> {
+    var estimatedProgress: Observable<Double> {
         return self.observeWeakly(Double.self, "estimatedProgress")
             .map { $0 ?? 0.0 }
     }
@@ -45,7 +54,7 @@ public extension Reactive where Base: WKWebView {
     /**
      Reactive wrapper for `canGoBack` property.
      */
-    public var canGoBack: Observable<Bool> {
+    var canGoBack: Observable<Bool> {
         return self.observeWeakly(Bool.self, "canGoBack")
             .map { $0 ?? false }
     }
@@ -53,7 +62,7 @@ public extension Reactive where Base: WKWebView {
     /**
      Reactive wrapper for `canGoForward` property.
      */
-    public var canGoForward: Observable<Bool> {
+    var canGoForward: Observable<Bool> {
         return self.observeWeakly(Bool.self, "canGoForward")
             .map { $0 ?? false }
     }
@@ -62,7 +71,7 @@ public extension Reactive where Base: WKWebView {
     ///
     /// - Parameter javaScriptString: The JavaScript string to evaluate.
     /// - Returns: Observable sequence of result of the script evaluation.
-    public func evaluateJavaScript(_ javaScriptString:String) -> Observable<Any?> {
+    func evaluateJavaScript(_ javaScriptString:String) -> Observable<Any?> {
         return Observable.create { [weak base] observer in
             base?.evaluateJavaScript(javaScriptString) { value, error in
                 if let error = error {

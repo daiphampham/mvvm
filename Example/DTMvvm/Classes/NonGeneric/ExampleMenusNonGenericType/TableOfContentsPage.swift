@@ -75,7 +75,8 @@ class TableOfContentViewModel: BaseListViewModel {
         let service = MenuTableCellViewModel(model: MenuModel(withTitle: "Service Examples", desc: "Examples about how to create a service and register it; how to inject to our ViewModel."))
         let transition = MenuTableCellViewModel(model: MenuModel(withTitle: "Transition Examples",
                                                                  desc: "Examples about how to create a custom transitioning animation and apply it."))
-        itemsSource.reset([[intro, mvvm, dataBinding, service, transition]])
+        let webKit = MenuTableCellViewModel(model: MenuModel(withTitle: "WebKit", desc: "Examples about how to create a  Webkit and apply it."))
+        itemsSource.reset([[intro, mvvm, dataBinding, service, transition, webKit]])
     }
     
     func pageToNavigate(_ cellViewModel: BaseCellViewModel) -> UIViewController? {
@@ -89,13 +90,12 @@ class TableOfContentViewModel: BaseListViewModel {
             page = TableOfContentsPage(model: MvvmExamplesPageViewModel(model: cellViewModel.model))
         case 2:
             page = TableOfContentsPage(model: DatabindingExamplesPageViewModel(model: cellViewModel.model))
-            break
         case 3:
             page = TableOfContentsPage(model: ServiceExamplesPageViewModel(model: cellViewModel.model))
-            break
         case 4:
             page = TableOfContentsPage(model: TransitionExamplesPageViewModel(model: cellViewModel.model))
-            break
+        case 5:
+            page = TableOfContentsPage(model: WebViewExamplesPageViewModel(model: cellViewModel.model))
         default: ()
         }
         return page
@@ -209,6 +209,55 @@ class TransitionExamplesPageViewModel: TableOfContentViewModel {
         case 0:
             break
         case 1:
+            break
+        default: ()
+        }
+        
+        return page
+    }
+}
+
+
+//MARK: WebView Examples
+class WebViewExamplesPageViewModel: TableOfContentViewModel {
+    override func fetchData() {
+        
+        let alertPanel = MenuTableCellViewModel(model: MenuModel(withTitle: "Alert Panel With Message",
+                                                                 desc: "Run java scription alert panel with message"))
+        
+        let confirmAlertPanel = MenuTableCellViewModel(model: MenuModel(withTitle: "Confirm Alert",
+                                                                        desc: "Run java scription comfirm alert panel with message"))
+        
+        let authentication = MenuTableCellViewModel(model: MenuModel(withTitle: "Authentication",
+                                                                        desc: "Handle Authentication use URLCredential"))
+        
+        
+        let handleLinkError = MenuTableCellViewModel(model: MenuModel(withTitle: "Fail Provisional Navigation",
+                                                                      desc: "Handle delegate method `didFailProvisionalNavigation`."))
+        let evaluateJavaScript =  MenuTableCellViewModel(model: MenuModel(withTitle: "Evaluate JavaScript",
+                                                                             desc: "Reactive wrapper for `evaluateJavaScript(_:completionHandler:)` method."))
+        
+        itemsSource.reset([[alertPanel, confirmAlertPanel, authentication, handleLinkError, evaluateJavaScript]])
+    }
+    
+    override func pageToNavigate(_ cellViewModel: BaseCellViewModel) -> UIViewController? {
+        guard let indexPath = rxSelectedIndex.value else { return nil }
+        var page: UIViewController?
+        switch indexPath.row {
+        case 0:
+            page = IntroductionPage(model: AlertWebViewModel(model: cellViewModel.model))
+            break
+        case 1:
+            page = IntroductionPage(model: ConfirmAlertWebViewModel(model: cellViewModel.model))
+            break
+        case 2:
+            page = IntroductionPage(model: AuthenticationWebViewModel(model: cellViewModel.model))
+            break
+        case 3:
+            page = IntroductionPage(model: FailNavigationWebViewModel(model: cellViewModel.model))
+            break
+        case 4:
+            page = IntroductionPage(model: EvaluateJavaScriptWebViewModel(model: cellViewModel.model))
             break
         default: ()
         }

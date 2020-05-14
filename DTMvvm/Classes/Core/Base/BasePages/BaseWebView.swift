@@ -64,13 +64,33 @@ open class BaseWebView: BasePage {
                               didReceive: challenge,
                               completionHandler: handler)
         }) => disposeBag
-        // Subcribe java did receive challenge
-        wkWebView.rx.didFailProvisionalNavigation.observeOn(MainScheduler.instance).subscribe(onNext: { [weak self] webView, navigation, error in
+        // Subcribe java did fail provisional navigation
+        wkWebView.rx.didFailProvisionalNavigation.observeOn(MainScheduler.instance).subscribe(onNext: { webView, navigation, error in
             viewModel.webView(webView,
                               didFailProvisionalNavigation: navigation,
                               withError: error)
         }) => disposeBag
         
+        // Subcribe java did receive policy navigation action
+        wkWebView.rx.decidePolicyNavigationAction.observeOn(MainScheduler.instance).subscribe(onNext: { (webview, navigation, handler) in
+            viewModel.webView(webview,
+                              decidePolicyFor: navigation,
+                              decisionHandler: handler)
+        }) => disposeBag
+        
+        // Subcribe java did receive policy navigation response
+        wkWebView.rx.decidePolicyNavigationResponse.observeOn(MainScheduler.instance).subscribe(onNext: { (webview, response, handler) in
+            viewModel.webView(webview,
+                              decidePolicyFor: response,
+                              decisionHandler: handler)
+        }) => disposeBag
+        
+        
+        // Subcribe did finish navigation
+        wkWebView.rx.didFinishNavigation.observeOn(MainScheduler.instance).subscribe(onNext: { (webView, navigation) in
+            viewModel.webView(webView,
+                              didFinish: navigation)
+        }) => disposeBag
         
         wkWebView.rx.estimatedProgress.share(replay: 1).subscribe(onNext: { [weak self] value in
             guard let self = self else { return }
@@ -100,7 +120,7 @@ open class BaseWebView: BasePage {
      </script>
      Use: evaluateJavaScript("presentAlert()")
      */
-    func evaluateJavaScript(_ function: String) {
+    public func evaluateJavaScript(_ function: String) {
         guard let viewModel = self.viewModel as? BaseWebViewModel else {
             return
         }
